@@ -28,6 +28,6 @@ spec_at = team_values.loc[team_values['posteam'] == away_team]
 st.write(str(spec_at['posteam_num'].iloc[0]))
 quarter = st.selectbox("Quarter", range(1, 5))
 minutes = st.slider("Minutes in Quarter", 0, 15, 15)
-seconds = st.slider("Seconds in Quarter", 0, 60, 60)
+seconds = st.slider("Seconds in Quarter", 0, 60, 0)
 game_sec = str(((900*quarter) - 900) + (900 - (minutes*60)) - 60 + (60 -seconds))
 st.write(game_sec)
