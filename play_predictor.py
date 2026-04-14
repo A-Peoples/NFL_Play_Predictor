@@ -26,6 +26,6 @@ st.write(str(spec_ht['posteam_num'].iloc[0]))
 away_team = st.selectbox("Away Team", team_values['posteam'].unique())
 spec_at = team_values.loc[team_values['posteam'] == away_team]
 st.write(str(spec_at['posteam_num'].iloc[0]))
-quarter = st.selectbox("Quarter", range(0, 4))
+quarter = st.selectbox("Quarter", range(1, 4))
 minutes = st.slider("Minutes in Quarter", 0, 15, 15)
 seconds = st.slider("Seconds in Quarter", 0, 60, 60)
