@@ -9,15 +9,13 @@ st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
 @st.cache_data()
 
 def load_data():
-  X_train = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/X_train.csv')
-  X_test = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/X_test.csv')
-  y_train = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/y_train.csv')
-  y_test = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/y_test.csv')
+  X = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/X.csv')
+  y = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/y.csv')
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
 
-  return X_train, X_test, y_train, y_test, team_values
+  return X, y, team_values
 
-X_train, X_test, y_train, y_test, team_values = load_data()
+X, y, team_values = load_data()
 
 home_team = st.selectbox("Home Team", team_values['posteam'].unique())
 spec_ht = team_values.loc[team_values['posteam'] == home_team]
@@ -26,8 +24,6 @@ st.write(str(spec_ht['posteam_num'].iloc[0]))
 away_team = st.selectbox("Away Team", team_values['posteam'].unique())
 spec_at = team_values.loc[team_values['posteam'] == away_team]
 st.write(str(spec_at['posteam_num'].iloc[0]))
-quarter = st.selectbox("Quarter", range(1, 5))
+quarter = st.selectbox("Quarter", range(1, 4))
 minutes = st.slider("Minutes in Quarter", 0, 15, 15)
-seconds = st.slider("Seconds in Quarter", 0, 60, 0)
-game_sec = str(((900*quarter) - 900) + (900 - (minutes*60)) - 60 + (60 -seconds))
-st.write(game_sec)
+seconds = st.slider("Seconds in Quarter", 0, 60, 60)
