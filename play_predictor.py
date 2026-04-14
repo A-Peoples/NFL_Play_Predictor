@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import streamlit as st
 
 st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
-#@st.cache_data()
+@st.cache_data()
 
 def load_data():
   X_train = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/X_train.csv')
@@ -29,4 +29,5 @@ st.write(str(spec_at['posteam_num'].iloc[0]))
 quarter = st.selectbox("Quarter", range(1, 5))
 minutes = st.slider("Minutes in Quarter", 0, 15, 15)
 seconds = st.slider("Seconds in Quarter", 0, 60, 60)
-est_sec = str(((900*quarter) - 900) + (900 - (minutes*60)) - 60 + (60 -seconds))
+game_sec = str(((900*quarter) - 900) + (900 - (minutes*60)) - 60 + (60 -seconds))
+st.write(game_sec)
