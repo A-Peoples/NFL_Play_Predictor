@@ -9,13 +9,12 @@ st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
 @st.cache_data()
 
 def load_data():
-  X = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/X.csv')
-  y = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/y.csv')
+  test_dataset = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/test_dataset.csv')
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
 
   return X, y, team_values
 
-X, y, team_values = load_data()
+test_dataset, team_values = load_data()
 
 home_team = st.selectbox("Home Team", team_values['posteam'].unique())
 spec_ht = team_values.loc[team_values['posteam'] == home_team]
