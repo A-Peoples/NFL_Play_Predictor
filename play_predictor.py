@@ -32,5 +32,5 @@ with col2:
   game_sec = ((quarter * 900) - 900) + ((minutes * 60)) + (seconds)
   st.write(str(game_sec))
 with col3:
-  pd = st.slider("Point Differential", 0, 42, 0)
+  pd = st.number_input("Point Differential")
   yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
