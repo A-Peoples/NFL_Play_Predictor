@@ -12,7 +12,7 @@ def load_data():
   test_dataset = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/test_dataset.csv')
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
 
-  return X, y, team_values
+  return test_dataset, team_values
 
 test_dataset, team_values = load_data()
 
