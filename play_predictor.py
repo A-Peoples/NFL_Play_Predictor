@@ -15,7 +15,7 @@ def load_data():
   return test_dataset, team_values
 
 test_dataset, team_values = load_data()
-col1, col2 = st.columns(2)
+col1, col2 , col3 = st.columns(3)
 
 with col1:
   home_team = st.selectbox("Home Team", team_values['posteam'].unique())
@@ -31,3 +31,6 @@ with col2:
   seconds = st.slider("Seconds in Quarter", 0, 60, 0)
   game_sec = ((quarter * 900) - 900) + ((minutes * 60)) + (seconds)
   st.write(str(game_sec))
+with col3:
+  pd = st.slider("Point Differential", 0, 42, 0)
+  yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
