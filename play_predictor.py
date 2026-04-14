@@ -21,8 +21,8 @@ X_train, X_test, y_train, y_test, team_values = load_data()
 
 home_team = st.selectbox("Home Team", team_values['posteam'].unique())
 spec_ht = team_values.loc[team_values['posteam'] == home_team]
-st.write(str(spec_ht['posteam_num'][0]))
+st.write(str(spec_ht['posteam_num'].iloc[0]))
 
 away_team = st.selectbox("Away Team", team_values['posteam'].unique())
-spec_ht = team_values.loc[team_values['posteam'] == away_team]
-st.write(str(spec_ht['posteam_num'][0]))
+spec_at = team_values.loc[team_values['posteam'] == away_team]
+st.write(str(spec_at['posteam_num'].iloc[0]))
