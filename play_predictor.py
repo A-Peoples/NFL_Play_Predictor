@@ -66,11 +66,11 @@ def play_proba():
   X_scaled = scaler.transform(X)
   
   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-  
+
   dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
   dtc_re2.fit(X_train, y_train.values.ravel())
-  
-  user_checks = [[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]]
+  #training
+  user_checks = np.array[[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]]
   prob = dtc_re2.predict_proba(user_checks)[0]
   classes = dtc_re2.classes_
   
