@@ -70,6 +70,6 @@ dtc_re2.fit(X_train, y_train)
 user_checks = [[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]]
 user_checks_scaled = scaler.transform(user_checks)
 prob = dtc_re2.predict_proba(user_checks_scaled)
-st.write('Probabilities: ' + prob)
+st.write('Probabilities: ' + prob[0])
 #st.dataframe(column_dataset, use_container_width=True)
 
