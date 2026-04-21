@@ -46,9 +46,11 @@ with col3:
 with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
+  if down == 1:
+    ydstogo = 10
 
 column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
-                                   ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
+                                   (((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))))].reset_index(drop=True)
 
 
