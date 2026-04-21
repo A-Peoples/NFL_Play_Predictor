@@ -22,12 +22,12 @@ with col1:
   home_team = st.selectbox("Home Team", team_values['posteam'].unique())
   spec_ht = team_values.loc[team_values['posteam'] == home_team]
   home_team_num = spec_ht['posteam_num'].iloc[0]
-  st.write(str(home_team_num))
+  #st.write(str(home_team_num))
 
   away_team = st.selectbox("Away Team", team_values['posteam'].unique())
   spec_at = team_values.loc[team_values['posteam'] == away_team]
   away_team_num = spec_at['posteam_num'].iloc[0]
-  st.write(str(away_team_num))
+  #st.write(str(away_team_num))
 with col2:
   quarter = st.selectbox("Quarter", range(1, 5))
   minutes = st.slider("Minutes in Quarter", 0, 15, 15)
@@ -35,7 +35,7 @@ with col2:
   if minutes == 15:
     seconds = 0
   game_sec = (3600 - (quarter * 900 - 900)) - (900 - (minutes * 60 + seconds))
-  st.write(str(game_sec))
+  #st.write(str(game_sec))
 with col3:
   pd = st.number_input("Point Differential", step=1)
   yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
