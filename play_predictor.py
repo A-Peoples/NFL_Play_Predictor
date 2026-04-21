@@ -34,7 +34,7 @@ with col2:
   seconds = st.slider("Seconds in Quarter", 0, 59, 0)
   if minutes == 15:
     seconds = 0
-  game_sec = (3600 - (quarter * 900)) - (900 - (minutes * 60 + seconds))
+  game_sec = (3600 - (quarter * 900 - 900)) - (900 - (minutes * 60 + seconds))
   st.write(str(game_sec))
 with col3:
   pd = st.number_input("Point Differential", step=1)
