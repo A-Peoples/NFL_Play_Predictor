@@ -79,7 +79,7 @@ def play_proba():
 
 st.button('Generate')
 
-if st.button('Generate'):
+if st.button('Generate Pred'):
   play_proba()
 #st.dataframe(column_dataset, use_container_width=True)
 
