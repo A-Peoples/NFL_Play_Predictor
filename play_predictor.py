@@ -20,7 +20,7 @@ def load_data():
 st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 'play_type_remap']]
-col1, col2 , col3, col4, col5 = st.columns(5)
+col1, col2 , col3, col4 = st.columns(4)
 
 with col1:
   home_team = st.selectbox("Home Team", team_values['posteam'].unique())
