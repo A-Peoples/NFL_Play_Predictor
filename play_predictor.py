@@ -47,5 +47,6 @@ column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - pd).isin(range
                                    ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-30, 31)) & (test_dataset['down'] == down) & 
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-5, 5))))].reset_index(drop=True)
 
-st.dataframe(column_dataset, use_container_width=True)
 st.button('Generate')
+st.dataframe(column_dataset, use_container_width=True)
+
