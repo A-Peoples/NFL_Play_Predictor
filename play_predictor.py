@@ -48,12 +48,12 @@ with col3:
   #st.write(str(game_sec))
 with col4:
   down = st.selectbox("Down", range(1, 5))
-  ydstogo = st.selectbox("Yards To Go", range(1, 43), 10)
+  ydstogo = st.selectbox("Yards To Go", range(1, 43), 11)
   if down == 1:
     ydstogo = 10
 with col5:
-  h_timeouts = st.selectbox("Home Team Timeouts", range(0, 4))
-  a_timeouts = st.selectbox("Away Team Timeouts", range(0, 4))
+  h_timeouts = st.selectbox("Home Team Timeouts", range(0, 4), 4)
+  a_timeouts = st.selectbox("Away Team Timeouts", range(0, 4), 4)
 column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
                                    ((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & 
