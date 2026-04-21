@@ -20,7 +20,7 @@ def load_data():
 st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 'play_type_remap']]
-col1, col2 , col3, col4 = st.columns(4)
+col1, col2 , col3 = st.columns(3)
 
 with col1:
   home_team = st.selectbox("Home Team", team_values['posteam'].unique())
@@ -45,7 +45,6 @@ with col2:
 with col3:
   p_diff = st.number_input("Point Differential", step=1)
   yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
-with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
   if down == 1:
