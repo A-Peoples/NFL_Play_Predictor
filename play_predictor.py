@@ -4,7 +4,11 @@ import sportsdataverse as sdv
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
-
+#modeling packages
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
 st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
 @st.cache_data()
 
@@ -15,7 +19,7 @@ def load_data():
   return test_dataset, team_values
 st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
-test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'play_type_remap', 'game_seconds_remaining']]
+test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 'play_type_remap']]
 col1, col2 , col3, col4 = st.columns(4)
 
 with col1:
@@ -48,5 +52,24 @@ column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - pd).isin(range
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-5, 5))))].reset_index(drop=True)
 
 st.button('Generate')
-st.dataframe(column_dataset, use_container_width=True)
+features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining']
+labels = ['play_type_remap']
+
+X = column_dataset[features]
+y = column_dataset[labels]
+
+scaler = StandardScaler()
+scaler.fit(X)
+X_scaled = scaler.transform(X)
+
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+
+dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
+dtc_re2.fit(X_train, y_train)
+
+user_checks = [[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]]
+user_checks_scaled = scaler.transform(user_checks)
+prob = dec_re2.predict_proba(user_checks_scaled)
+st.write('Probabilities: ' + prob)
+#st.dataframe(column_dataset, use_container_width=True)
 
