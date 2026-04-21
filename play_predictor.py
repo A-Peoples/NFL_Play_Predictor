@@ -21,7 +21,7 @@ st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 'play_type_remap']]
 col1, col2 , col3, col4 = st.columns(4)
-prob_df = pd.DataFrame()
+
 with col1:
   home_team = st.selectbox("Home Team", team_values['posteam'].unique())
   spec_ht = team_values.loc[team_values['posteam'] == home_team]
@@ -62,7 +62,7 @@ scaler = StandardScaler()
 scaler.fit(X)
 X_scaled = scaler.transform(X)
 
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
 dtc_re2.fit(X_train, y_train.values.ravel())
@@ -71,8 +71,10 @@ user_checks = [[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec
 user_checks_scaled = scaler.transform(user_checks)
 prob = dtc_re2.predict_proba(user_checks_scaled)[0]
 classes = dtc_re2.classes_
+
 st.write('Play Probabilities')
 st.write(str(X_scaled.shape))
+
 prob_df = pd.DataFrame({'Play_Type': classes, 'Probabilities': prob})   
 st.dataframe(prob_df, use_container_width=True)
 #st.dataframe(column_dataset, use_container_width=True)
