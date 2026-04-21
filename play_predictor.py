@@ -43,6 +43,7 @@ with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
 
-column_dataset = test_dataset.loc[(test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)] 
+column_dataset = test_dataset.loc[((test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)) & 
+((test_dataset['posteam_pd'] - pd).isin(range(-1, 2)))].reset_index()
 
 st.dataframe(column_dataset, use_container_width=True)
