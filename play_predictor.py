@@ -62,7 +62,7 @@ column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(r
 #st.dataframe(test_dataset, use_container_width=True)
 
 
-features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining']
+features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 'posteam_timeouts_remaining', 'defteam_timeouts_remaining']
 labels = ['play_type_remap']
 
 X = column_dataset[features]
