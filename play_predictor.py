@@ -41,13 +41,13 @@ with col2:
   game_sec = (3600 - (quarter * 900 - 900)) - (900 - (minutes * 60 + seconds))
   #st.write(str(game_sec))
 with col3:
-  pd = st.number_input("Point Differential", step=1)
+  p_diff = st.number_input("Point Differential", step=1)
   yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
 with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
 
-column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - pd).isin(range(-5, 5))) & 
+column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
                                    ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-30, 31)) & (test_dataset['down'] == down) & 
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-5, 5))))].reset_index(drop=True)
 
@@ -72,7 +72,7 @@ def play_proba():
   dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
   dtc_re2.fit(X_train, y_train.values.ravel())
   #training
-  user_checks = np.array([[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]])
+  user_checks = np.array([[home_team_num, away_team_num, down, ydstogo, p_diff, yt_ez, game_sec]])
   prob = dtc_re2.predict_proba(user_checks)[0]
   classes = dtc_re2.classes_
   
