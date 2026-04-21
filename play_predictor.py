@@ -51,30 +51,32 @@ column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - pd).isin(range
                                    ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-30, 31)) & (test_dataset['down'] == down) & 
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-5, 5))))].reset_index(drop=True)
 
-st.button('Generate')
+
 features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining']
 labels = ['play_type_remap']
 
 X = column_dataset[features]
 y = column_dataset[labels]
+def play_proba():
+  scaler = StandardScaler()
+  scaler.fit(X)
+  X_scaled = scaler.transform(X)
+  
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+  
+  dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
+  dtc_re2.fit(X_train, y_train.values.ravel())
+  
+  user_checks = [[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]]
+  prob = dtc_re2.predict_proba(user_checks)[0]
+  classes = dtc_re2.classes_
+  
+  st.write('Play Probabilities')
+  st.write(str(X.shape))
+  
+  prob_df = pd.DataFrame({'Play_Type': classes, 'Probabilities': prob})   
+  st.dataframe(prob_df, use_container_width=True)
 
-scaler = StandardScaler()
-scaler.fit(X)
-X_scaled = scaler.transform(X)
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
-dtc_re2.fit(X_train, y_train.values.ravel())
-
-user_checks = [[home_team_num, away_team_num, down, ydstogo, pd, yt_ez, game_sec]]
-prob = dtc_re2.predict_proba(user_checks)[0]
-classes = dtc_re2.classes_
-
-st.write('Play Probabilities')
-st.write(str(X.shape))
-
-prob_df = pd.DataFrame({'Play_Type': classes, 'Probabilities': prob})   
-st.dataframe(prob_df, use_container_width=True)
+  st.button('Generate', play_proba)
 #st.dataframe(column_dataset, use_container_width=True)
 
