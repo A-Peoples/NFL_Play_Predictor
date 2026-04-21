@@ -44,6 +44,6 @@ with col4:
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
 
 column_dataset = test_dataset.loc[((test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)) |
-((test_dataset['posteam_pd'] - pd).isin(range(-5, 5))) | ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-30, 31)))].reset_index()
+(((test_dataset['posteam_pd'] - pd).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-30, 31))))].reset_index()
 
 st.dataframe(column_dataset, use_container_width=True)
