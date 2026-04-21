@@ -59,7 +59,7 @@ column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(r
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & 
                                    (test_dataset['posteam_timeouts_remaining'] == h_timeouts) & (test_dataset['defteam_timeouts_remaining'] == a_timeouts))].reset_index(drop=True)
 
-st.dataframe(test_dataset, use_container_width=True)
+#st.dataframe(test_dataset, use_container_width=True)
 
 
 features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining']
