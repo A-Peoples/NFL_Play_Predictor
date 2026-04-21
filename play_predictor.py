@@ -82,7 +82,7 @@ def play_proba():
   dtc_re2 = RandomForestClassifier(max_depth=13, criterion='entropy', class_weight='balanced', n_estimators=100, random_state=42)
   dtc_re2.fit(X_train, y_train.values.ravel())
   #training
-  user_checks = np.array([[home_team_num, away_team_num, down, ydstogo, p_diff, yt_ez, game_sec]])
+  user_checks = np.array([[home_team_num, away_team_num, down, ydstogo, p_diff, yt_ez, game_sec, h_timeouts, a_timeouts]])
   prob = dtc_re2.predict_proba(user_checks)[0]
   classes = dtc_re2.classes_
   
