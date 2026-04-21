@@ -48,7 +48,7 @@ with col3:
   #st.write(str(game_sec))
 with col4:
   down = st.selectbox("Down", range(1, 5))
-  ydstogo = st.selectbox("Yards To Go", range(1, 43))
+  ydstogo = st.selectbox("Yards To Go", range(1, 43), 10)
   if down == 1:
     ydstogo = 10
 with col5:
