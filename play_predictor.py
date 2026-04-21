@@ -58,6 +58,9 @@ labels = ['play_type_remap']
 X = column_dataset[features]
 y = column_dataset[labels]
 def play_proba():
+  if X.empty:
+    st.write('No Rows Found')
+    return
   scaler = StandardScaler()
   scaler.fit(X)
   X_scaled = scaler.transform(X)
