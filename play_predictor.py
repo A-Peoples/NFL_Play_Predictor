@@ -15,7 +15,7 @@ def load_data():
   return test_dataset, team_values
 
 test_dataset, team_values = load_data()
-test_dataset = test_dataset['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'play_type_remap'] 
+test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'play_type_remap']]
 col1, col2 , col3, col4 = st.columns(4)
 
 with col1:
