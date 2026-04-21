@@ -15,7 +15,7 @@ def load_data():
   return test_dataset, team_values
 st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
-test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'play_type_remap']]
+test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'play_type_remap', 'game_seconds_remaining']]
 col1, col2 , col3, col4 = st.columns(4)
 
 with col1:
@@ -43,7 +43,7 @@ with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
 
-column_dataset = test_dataset.loc[((test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)) &
-((test_dataset['posteam_pd'] - pd).isin(range(-1, 5)))].reset_index()
+column_dataset = test_dataset.loc[((test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)) |
+((test_dataset['posteam_pd'] - pd).isin(range(-1, 5))) & ].reset_index()
 
 st.dataframe(column_dataset, use_container_width=True)
