@@ -79,7 +79,7 @@ def play_proba():
   st.write('Play Probabilities')
   st.write(str(X.shape))
   
-  prob_df = pd.DataFrame({Play_Type: classes, Probabilities: prob})   
+  prob_df = pd.DataFrame({'Play_Type': classes, 'Probabilities': prob})   
   st.dataframe(prob_df, use_container_width=True)
 
 if st.button('Generate Prediction'):
