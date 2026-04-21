@@ -7,13 +7,13 @@ import streamlit as st
 
 st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
 @st.cache_data()
-st.header("NFL Play Type Predictor")
+
 def load_data():
   test_dataset = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/test_dataset.csv')
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
 
   return test_dataset, team_values
-
+st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'play_type_remap']]
 col1, col2 , col3, col4 = st.columns(4)
