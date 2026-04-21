@@ -36,4 +36,4 @@ with col3:
   yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
 with col4:
   down = st.selectbox("Down", range(1, 5))
-  ydstogo = st.selectbox("Yards To Go", ['1', '2-5', '6-9', '10+'])
+  ydstogo = st.selectbox("Yards To Go", ['1', '2-5', '6-9', '10-20', '20+'])
