@@ -99,4 +99,4 @@ def play_proba():
   st.dataframe(prob_df, use_container_width=True)
 if st.button('Generate Prediction'):
   play_proba()
-st.dataframe(column_dataset, use_container_width=True)
+st.dataframe(test_dataset, use_container_width=True)
