@@ -80,8 +80,18 @@ def play_proba():
   st.write(str(X.shape))
   
   prob_df = pd.DataFrame({'Play_Type': classes, 'Probability': prob})   
-  st.dataframe(prob_df, use_container_width=True)
+  
+  pt_map = {
+ 'run': 0,
+ 'pass': 1,
+ 'field_goal': 2,
+ 'punt': 3,
+ 'extra_point': 4,
+ 'qb_spike': 5,
+ 'qb_kneel': 6}
 
+  prob_df['Play_Type'] = prob_df['Play_Type'].map(pt_map)
+  st.dataframe(prob_df, use_container_width=True)
 if st.button('Generate Prediction'):
   play_proba()
 #st.dataframe(column_dataset, use_container_width=True)
