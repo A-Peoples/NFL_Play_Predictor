@@ -89,10 +89,9 @@ def play_proba():
  'extra_point': 4,
  'qb_spike': 5,
  'qb_kneel': 6}
-
+  pt_map = {v: k for k, v in pt_map.items()}
   prob_df['Play_Type'] = prob_df['Play_Type'].map(pt_map)
   st.dataframe(prob_df, use_container_width=True)
 if st.button('Generate Prediction'):
   play_proba()
 #st.dataframe(column_dataset, use_container_width=True)
-
