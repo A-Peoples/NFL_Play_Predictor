@@ -32,8 +32,8 @@ with col1:
   spec_at = team_values.loc[team_values['posteam'] == away_team]
   away_team_num = spec_at['posteam_num'].iloc[0]
   #st.write(str(away_team_num))
-  h_timeouts = st.slider("Home Team Timeouts", 0, 3, 3)
-  a_timeouts = st.slider("Away Team Timeouts", 0, 3, 3)
+  h_timeouts = st.selectbox("Home Team Timeouts", 0, 3, 3)
+  a_timeouts = st.selectbox("Away Team Timeouts", 0, 3, 3)
 with col2:
   quarter = st.selectbox("Quarter", range(1, 5))
   minutes = st.slider("Minutes in Quarter", 0, 15, 15)
