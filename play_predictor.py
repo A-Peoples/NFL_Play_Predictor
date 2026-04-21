@@ -35,6 +35,10 @@ with col1:
   away_team_num = spec_at['posteam_num'].iloc[0]
   #st.write(str(away_team_num))
 with col2:
+  p_diff = st.number_input("Point Differential", step=1)
+  yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
+  
+with col3:
   quarter = st.selectbox("Quarter", range(1, 5))
   minutes = st.slider("Minutes in Quarter", 0, 15, 15)
   seconds = st.slider("Seconds in Quarter", 0, 59, 0)
@@ -42,9 +46,6 @@ with col2:
     seconds = 0
   game_sec = (3600 - (quarter * 900 - 900)) - (900 - (minutes * 60 + seconds))
   #st.write(str(game_sec))
-with col3:
-  p_diff = st.number_input("Point Differential", step=1)
-  yt_ez = st.slider("Yards Til Goaline", 0, 100, 75)
 with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
