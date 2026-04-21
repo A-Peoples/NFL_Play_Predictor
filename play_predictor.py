@@ -53,7 +53,8 @@ with col5:
   a_timeouts = st.selectbox("Away Team Timeouts", range(0, 4))
 column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
                                    ((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
-                                   (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & (test_dataset['posteam_timeouts_remaining'] == h_timeout) & (test_dataset['defteam_timeouts_remaining'] == a_timeout))].reset_index(drop=True)
+                                   (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))))].reset_index(drop=True)
+#(test_dataset['posteam_timeouts_remaining'] == h_timeout) & (test_dataset['defteam_timeouts_remaining'] == a_timeout)
 
 
 features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining']
