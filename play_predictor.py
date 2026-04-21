@@ -21,7 +21,7 @@ st.header("NFL Play Type Predictor")
 test_dataset, team_values = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 
                              'play_type_remap', 'posteam_timeouts_remaining', 'defteam_timeouts_remaining']]
-st.dataframe(test_dataset, use_container_width=True)
+
 col1, col2 , col3, col4, col5 = st.columns(5)
 
 with col1:
@@ -55,8 +55,10 @@ with col5:
   a_timeouts = st.selectbox("Away Team Timeouts", range(0, 4))
 column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
                                    ((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
-                                   (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & (test_dataset['posteam_timeouts_remaining'] == h_timeout) & (test_dataset['defteam_timeouts_remaining'] == a_timeout))].reset_index(drop=True)
-#(test_dataset['posteam_timeouts_remaining'] == h_timeout) & (test_dataset['defteam_timeouts_remaining'] == a_timeout)
+                                   (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & (test_dataset['posteam_timeouts_remaining'] == h_timeout) & 
+                                   (test_dataset['defteam_timeouts_remaining'] == a_timeout))].reset_index(drop=True)
+
+st.dataframe(test_dataset, use_container_width=True)
 
 
 features = ['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining']
