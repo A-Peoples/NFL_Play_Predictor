@@ -32,6 +32,8 @@ with col2:
   quarter = st.selectbox("Quarter", range(1, 5))
   minutes = st.slider("Minutes in Quarter", 0, 15, 15)
   seconds = st.slider("Seconds in Quarter", 0, 60, 0)
+  if minutes = 15:
+    seconds = 0
   game_sec = (quarter * 900) - (900 - (minutes*60 + seconds))
   st.write(str(game_sec))
 with col3:
