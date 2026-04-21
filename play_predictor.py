@@ -26,7 +26,7 @@ with col1:
 
   away_team = st.selectbox("Away Team", team_values['posteam'].unique())
   spec_at = team_values.loc[team_values['posteam'] == away_team]
-  away_team_num = spec_ht['posteam_num'].iloc[0]
+  away_team_num = spec_at['posteam_num'].iloc[0]
   st.write(str(away_team_num))
 with col2:
   quarter = st.selectbox("Quarter", range(1, 5))
