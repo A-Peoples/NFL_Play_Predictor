@@ -52,8 +52,8 @@ with col4:
   if down == 1:
     ydstogo = 10
 with col5:
-  h_timeouts = st.selectbox("Home Team Timeouts", range(0, 4), 4)
-  a_timeouts = st.selectbox("Away Team Timeouts", range(0, 4), 4)
+  h_timeouts = st.selectbox("Home Team Timeouts", range(0, 4), 3)
+  a_timeouts = st.selectbox("Away Team Timeouts", range(0, 4), 3)
 column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
                                    ((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
                                    (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & 
