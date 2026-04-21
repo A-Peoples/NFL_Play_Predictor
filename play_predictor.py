@@ -38,4 +38,7 @@ with col3:
 with col4:
   down = st.selectbox("Down", range(1, 5))
   ydstogo = st.selectbox("Yards To Go", range(1, 43))
+  
 st.dataframe(test_dataset, use_container_width=True)
+
+column_dataset = test_dataset.loc[(test_dataset['posteam'] == home_team) | (test_dataset['defteam'] == away_team)] 
