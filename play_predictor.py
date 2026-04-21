@@ -72,7 +72,7 @@ user_checks_scaled = scaler.transform(user_checks)
 prob = dtc_re2.predict_proba(user_checks_scaled)[0]
 classes = dtc_re2.classes_
 st.write('Play Probabilities')
-st.write(str(X_scaled.shape()))
+st.write(str(X_scaled.shape))
 prob_df = pd.DataFrame({'Play_Type': classes, 'Probabilities': prob})   
 st.dataframe(prob_df, use_container_width=True)
 #st.dataframe(column_dataset, use_container_width=True)
