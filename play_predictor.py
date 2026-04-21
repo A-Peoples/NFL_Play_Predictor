@@ -21,11 +21,13 @@ col1, col2 , col3, col4 = st.columns(4)
 with col1:
   home_team = st.selectbox("Home Team", team_values['posteam'].unique())
   spec_ht = team_values.loc[team_values['posteam'] == home_team]
-  st.write(str(spec_ht['posteam_num'].iloc[0]))
+  home_team_num = spec_ht['posteam_num'].iloc[0]
+  st.write(str(home_team_num))
 
   away_team = st.selectbox("Away Team", team_values['posteam'].unique())
   spec_at = team_values.loc[team_values['posteam'] == away_team]
-  st.write(str(spec_at['posteam_num'].iloc[0]))
+  away_team_num = spec_ht['posteam_num'].iloc[0]
+  st.write(str(away_team_num))
 with col2:
   quarter = st.selectbox("Quarter", range(1, 5))
   minutes = st.slider("Minutes in Quarter", 0, 15, 15)
