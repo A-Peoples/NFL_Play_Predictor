@@ -15,7 +15,7 @@ st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
 def load_data():
   test_dataset = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/test_dataset.csv')
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
-  names = pd.read_csv("https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/names.csv")
+  names = pd.read_csv("https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/names.csv")
   return test_dataset, team_values, names
 st.header("NFL Play Type Predictor")
 test_dataset, team_values, names = load_data()
