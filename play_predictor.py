@@ -15,22 +15,26 @@ st.set_page_config(page_title='NFL Penalty Charting', layout="wide")
 def load_data():
   test_dataset = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/test_dataset.csv')
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
-
-  return test_dataset, team_values
+  names = pd.read_csv("https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/names.csv")
+  return test_dataset, team_values, names
 st.header("NFL Play Type Predictor")
-test_dataset, team_values = load_data()
+test_dataset, team_values, names = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 
                              'play_type_remap', 'posteam_timeouts_remaining', 'defteam_timeouts_remaining']]
-
+team_list = names['team_name'].dropna().unique().tolist()
 col1, col2 , col3, col4, col5 = st.columns(5)
 
 with col1:
-  home_team = st.selectbox("Home Team", team_values['posteam'].unique())
+  home_team_t = st.selectbox("Home Team", team_list)
+  names_var_h = names.loc[names['team_name'] == home_team_t]
+  home_team = names_var['team_abbr'].iloc[0]
   spec_ht = team_values.loc[team_values['posteam'] == home_team]
   home_team_num = spec_ht['posteam_num'].iloc[0]
   #st.write(str(home_team_num))
 
-  away_team = st.selectbox("Away Team", team_values['posteam'].unique())
+  away_team_t = st.selectbox("Away Team", team_list)
+  names_var_a = names.loc[names['team_name'] == away_team_t]
+  away_team = names_var['team_abbr'].iloc[0]
   spec_at = team_values.loc[team_values['posteam'] == away_team]
   away_team_num = spec_at['posteam_num'].iloc[0]
   #st.write(str(away_team_num))
