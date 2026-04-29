@@ -27,14 +27,14 @@ col1, col2 , col3, col4, col5 = st.columns(5)
 with col1:
   home_team_t = st.selectbox("Home Team", team_list)
   names_var_h = names.loc[names['team_name'] == home_team_t]
-  home_team = names_var['team_abbr'].iloc[0]
+  home_team = names_var_h['team_abbr'].iloc[0]
   spec_ht = team_values.loc[team_values['posteam'] == home_team]
   home_team_num = spec_ht['posteam_num'].iloc[0]
   #st.write(str(home_team_num))
 
   away_team_t = st.selectbox("Away Team", team_list)
   names_var_a = names.loc[names['team_name'] == away_team_t]
-  away_team = names_var['team_abbr'].iloc[0]
+  away_team = names_var_a['team_abbr'].iloc[0]
   spec_at = team_values.loc[team_values['posteam'] == away_team]
   away_team_num = spec_at['posteam_num'].iloc[0]
   #st.write(str(away_team_num))
