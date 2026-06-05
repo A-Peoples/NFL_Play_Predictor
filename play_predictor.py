@@ -72,7 +72,7 @@ situational_mask = ((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5)) &
                                                               )
 team_mask = (test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)
 #st.dataframe(test_dataset, use_container_width=True)
-column_dataset = test_dataset[situational_mask or team_mask]
+column_dataset = test_dataset[situational_mask | team_mask]
 #st.dataframe(test_dataset, use_container_width=True)
 
 
