@@ -58,12 +58,21 @@ with col4:
 with col5:
   h_timeouts = st.selectbox("Defense Team Timeouts", range(0, 4), 3)
   a_timeouts = st.selectbox("Offense Team Timeouts", range(0, 4), 3)
-column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
-                                   ((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
-                                   (test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & 
-                                   (test_dataset['posteam_timeouts_remaining'] == h_timeouts) & (test_dataset['defteam_timeouts_remaining'] == a_timeouts)) |
-                                   (test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)].reset_index(drop=True)
+#column_dataset = test_dataset.loc[(((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5))) & 
+                                   #((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) & ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) & (test_dataset['down'] == down) & 
+                                   #(test_dataset['yardline_100'] - yt_ez).isin(range(-10, 10))) & 
+                                   #(test_dataset['posteam_timeouts_remaining'] == h_timeouts) & (test_dataset['defteam_timeouts_remaining'] == a_timeouts)) |
+                                   #(test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)].reset_index(drop=True)
 
+situational_mask = ((test_dataset['posteam_pd'] - p_diff).isin(range(-5, 5)) &
+                   ((test_dataset['ydstogo'] - ydstogo).isin(range(-5, 5))) &
+                   ((test_dataset['game_seconds_remaining'] - game_sec).isin(range(-60, 61)) &
+                   (test_dataset['posteam_timeouts_remaining'] == h_timeouts) & 
+                   (test_dataset['defteam_timeouts_remaining'] == a_timeouts))
+                                                              )
+team_mask = (test_dataset['posteam_num'] == home_team_num) | (test_dataset['defteam_num'] == away_team_num)
+#st.dataframe(test_dataset, use_container_width=True)
+column_dataset = test_dataset[situational_mask or team_mask]
 #st.dataframe(test_dataset, use_container_width=True)
 
 
