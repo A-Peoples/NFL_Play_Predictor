@@ -17,13 +17,14 @@ def load_data():
   team_values = pd.read_csv('https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/team_values.csv')
   names = pd.read_csv("https://raw.githubusercontent.com/A-Peoples/NFL_Play_Predictor/refs/heads/main/datasets/names.csv")
   return test_dataset, team_values, names
+st.subheader("Article: https://medium.com/p/a6536f184aa8")
 st.header("NFL Play Type Predictor")
 test_dataset, team_values, names = load_data()
 test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'posteam_pd','yardline_100', 'game_seconds_remaining', 
                              'play_type_remap', 'posteam_timeouts_remaining', 'defteam_timeouts_remaining']]
 team_list = names['team_name'].dropna().unique().tolist()
 col1, col2 , col3, col4, col5 = st.columns(5)
-st.header("Article: https://medium.com/p/a6536f184aa8")
+
 with col1:
   home_team_t = st.selectbox("Offense Team", team_list)
   names_var_h = names.loc[names['team_name'] == home_team_t]
