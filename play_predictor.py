@@ -23,7 +23,7 @@ test_dataset = test_dataset[['posteam_num', 'defteam_num', 'down', 'ydstogo', 'p
                              'play_type_remap', 'posteam_timeouts_remaining', 'defteam_timeouts_remaining']]
 team_list = names['team_name'].dropna().unique().tolist()
 col1, col2 , col3, col4, col5 = st.columns(5)
-
+st.header("Article: https://medium.com/p/a6536f184aa8")
 with col1:
   home_team_t = st.selectbox("Offense Team", team_list)
   names_var_h = names.loc[names['team_name'] == home_team_t]
